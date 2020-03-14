@@ -1,7 +1,8 @@
 module.exports = {
+    app_mode: 'dep',
     portNo: 4000,
     db: {
-        mongo: {
+        dev: {
             main: {
                 name: 'ChoobinDb',
                 address: '127.0.0.1:27017'
@@ -10,6 +11,18 @@ module.exports = {
                 name: 'ChoobinDb_log',
                 address: '127.0.0.1:27017'
             }
+        },
+        deploy: {
+            main: {
+                name: 'ChoobinDb',
+                address: 's10.liara.ir:32108'
+            },
+            log: {
+                name: 'ChoobinDb_log',
+                address: 's10.liara.ir:32108'
+            },
+            userName: 'root',
+            password: 'nS1Zkejwe0rPN6HT5hyBjTKY'
         }
     },
     jwtExpireTime: 3000,
