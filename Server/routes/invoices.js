@@ -13,8 +13,6 @@ router.get('/:id?', async (req, res) => {
         }));
     }
     catch (ex) {
-        console.log("ex", ex)
-
         res.json(Object.assign(req.base, {
             result: false,
             data: ex.message
@@ -24,7 +22,6 @@ router.get('/:id?', async (req, res) => {
 
 router.route('/')
     .post(async (req, res) => {
-        console.log('ADD...');
         let invoice = Invoice();
         Map(req.body, invoice)
         try {

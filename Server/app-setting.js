@@ -1,5 +1,5 @@
 module.exports = {
-    app_mode: 'dep',
+    app_mode: 'dev',
     portNo: 4000,
     db: {
         dev: {

@@ -5,7 +5,7 @@ url = app_mode == 'dev' ?
     `mongodb://${db.dev.main.address}/${db.dev.main.name}` :
     `mongodb://${db.deploy.userName}:${db.deploy.password}@${db.deploy.main.address}/${db.deploy.main.name}?authSource=admin`;
 
-console.log("url", url)
+console.log("main-url", url)
 mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true });
 
 mongoose.Promise = Promise;

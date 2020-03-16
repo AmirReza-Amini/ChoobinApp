@@ -4,5 +4,8 @@ export const API_ROUTE = {
     AUTH: {
         login: GlobalUrl + 'auth/login/',
         get_token: GlobalUrl + 'auth/get-token'
+    },
+    INVOICE: {
+        GET: GlobalUrl + 'invoice/'
     }
 }

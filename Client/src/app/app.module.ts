@@ -18,6 +18,8 @@ import { AuthService } from './shared/auth/auth.service';
 import { CheckMelliCodeDirective } from './shared/directives/check-melli-code.directive';
 import { UniqueUsernameValidatorDirective } from './shared/directives/unique-username-validator.directive';
 import { SharedModule } from './shared/shared.module';
+import { InvoiceListComponent } from './invoice/invoice-list/invoice-list.component';
+import { ProductsListComponent } from './products/products-list/products-list.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -29,7 +31,7 @@ export function createTranslateLoader(http: HttpClient) {
 }
 
 @NgModule({
-  declarations: [AppComponent, FullLayoutComponent, ContentLayoutComponent, CheckMelliCodeDirective, UniqueUsernameValidatorDirective],
+  declarations: [AppComponent, FullLayoutComponent, ContentLayoutComponent, CheckMelliCodeDirective, UniqueUsernameValidatorDirective, InvoiceListComponent, ProductsListComponent],
   imports: [
     BrowserAnimationsModule,
     FormsModule,

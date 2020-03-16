@@ -5,7 +5,7 @@ url = app_mode == 'dev' ?
   `mongodb://${db.dev.log.address}/${db.dev.log.name}` :
   `mongodb://${db.deploy.userName}:${db.deploy.password}@${db.deploy.log.address}/${db.deploy.log.name}?authSource=admin`;
 
-console.log("url", url)
+console.log("log-url", url)
 
 const con = mongoose.createConnection(url, { useNewUrlParser: true, useUnifiedTopology: true })
 

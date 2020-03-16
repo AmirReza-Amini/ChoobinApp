@@ -8,7 +8,7 @@ export class ConfigService {
 
     public templateConf: TemplateConfig;
 
-    constructor( ) {
+    constructor() {
         this.setConfigValue();
     }
 
@@ -16,7 +16,7 @@ export class ConfigService {
         this.templateConf = {
             layout: {
                 variant: 'Transparent', // options:  Dark, Light & Transparent
-                dir:'rtl', //Options: ltr, rtl
+                dir: 'rtl', //Options: ltr, rtl
                 sidebar: {
                     collapsed: false, //options: true, false
                     size: 'sidebar-md', // Options: 'sidebar-lg', 'sidebar-md', 'sidebar-sm'
