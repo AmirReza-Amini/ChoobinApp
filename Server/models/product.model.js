@@ -6,7 +6,9 @@ const productSchema = new mongoose.Schema({
     code: { type: String, unique: true },
     category: { type: String },
     resinAmmount: { type: Number },
-    materials: [storeSchema]
+    hardness: { type: Number },
+    materials: [storeSchema],
+    isDeleted: { type: Boolean, default: false }
 });
 
 const productModel = mongoose.model('product', productSchema);

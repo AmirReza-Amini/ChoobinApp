@@ -75,6 +75,21 @@ FindAndUpdate = async (entity, req, res, condition, update) => {
         SendResponse(res, res, { error: 'nothing found!' }, false, 404);
 }
 
+save = async (entity, req, res) => {
+    try {
+        await entity.save();
+        res.json(Object.assign(req.base, {
+            data: entity
+        }))
+    }
+    catch (ex) {
+        res.json(Object.assign(req.base, {
+            result: false,
+            data: ex.message
+        }))
+    }
+}
+
 module.exports = {
     Insert: insert,
     InsertMany: insertMany,
@@ -82,5 +97,6 @@ module.exports = {
     Delete: softDelete,
     GetAll: getAll,
     GetOne: getOne,
-    HardDelete: hardDelete
+    HardDelete: hardDelete,
+    Save: save
 }

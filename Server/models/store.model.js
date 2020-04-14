@@ -1,10 +1,13 @@
 const mongoose = require('mongoose');
 
+
 const storeSchema = mongoose.Schema({
     name: { type: String, required: true },
-    unit: { type: String },
+    code: { type: String },
+    unit: { type: String, enum: ['gr', 'm', 'item', 'sheet'] },
     ammount: { type: Number },
     orderPoint: { type: Number },
+    price: { type: Number },
     byList: {
         type: [
             mongoose.Schema({
@@ -14,6 +17,7 @@ const storeSchema = mongoose.Schema({
             })
         ]
     },
+    isDeleted: { type: Boolean, default: false },
     exist: { type: Boolean, default: true }
 });
 
