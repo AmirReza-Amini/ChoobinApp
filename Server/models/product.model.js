@@ -3,7 +3,7 @@ const { storeSchema } = require('./store.model')
 
 const productSchema = new mongoose.Schema({
     name: { type: String, required: true },
-    code: { type: Number },
+    code: { type: String, unique: true },
     category: { type: String },
     resinAmmount: { type: Number },
     materials: [storeSchema]

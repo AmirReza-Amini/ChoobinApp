@@ -1,6 +1,6 @@
 module.exports = {
     app_mode: 'dev',
-    portNo: 4000,
+    portNo: 3100,
     db: {
         dev: {
             main: {

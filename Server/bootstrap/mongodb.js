@@ -6,6 +6,10 @@ url = app_mode == 'dev' ?
     `mongodb://${db.deploy.userName}:${db.deploy.password}@${db.deploy.main.address}/${db.deploy.main.name}?authSource=admin`;
 
 console.log("main-url", url)
+mongoose.set('useNewUrlParser', true);
+mongoose.set('useFindAndModify', false);
+mongoose.set('useCreateIndex', true);
+mongoose.set('useUnifiedTopology', true);
 mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true });
 
 mongoose.Promise = Promise;
