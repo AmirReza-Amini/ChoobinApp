@@ -1,4 +1,4 @@
-const GlobalUrl = 'http://localhost:4000/api/'
+const GlobalUrl = 'http://localhost:3100/api/'
 export const API_ROUTE = {
 
     AUTH: {
@@ -7,5 +7,21 @@ export const API_ROUTE = {
     },
     INVOICE: {
         GET: GlobalUrl + 'invoice/'
+    },
+    PRODUCT: {
+        GET: GlobalUrl + 'product/',
+        POST: GlobalUrl + 'product/',
+        PUT: GlobalUrl + 'product/'
+    },
+    CATEGORY: {
+        GET: GlobalUrl + 'category',
+        POST: GlobalUrl + 'category/',
+        PUT: GlobalUrl + 'category/'
+    },
+    STORE: {
+        GET: GlobalUrl + 'store/',
+        POST: GlobalUrl + 'store',
+        PUT: GlobalUrl + 'store',
+        BY: GlobalUrl + 'store/by/',
     }
 }

@@ -1,15 +1,68 @@
-import { Component, OnInit } from '@angular/core';
+import { CategoryService } from './../../categories/category.service';
+import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { ProductService } from './../product.service';
+import { Component, OnDestroy, ViewChild, ElementRef } from '@angular/core';
+import { Product } from 'app/models/product';
+import { FormMode } from 'app/shared/util/dictionary';
 
 @Component({
   selector: 'products-list',
   templateUrl: './products-list.component.html',
   styleUrls: ['./products-list.component.scss']
 })
-export class ProductsListComponent implements OnInit {
+export class ProductsListComponent implements OnDestroy {
+  @ViewChild('closeEditModal', null) closeEditModal: ElementRef<HTMLElement>;
+  productList: Product[] = []
+  url = '---'
+  categories = [];
+  currentProduct: Product = new Product();
+  sub$: Subscription;
+  formMode: FormMode = 'none'
+  constructor(private productService: ProductService, categoryService: CategoryService, activatedRoute: ActivatedRoute) {
+    categoryService.GetAllCategories().subscribe(m => this.categories = m.data)
+    activatedRoute.data.subscribe(m => {
+      this.url = m.title
+      this.LoadData(m.title);
+    })
+  }
 
-  constructor() { }
+  LoadData(category) {
+    this.sub$ = this.productService.GetProducts(category)
+      .subscribe(m => this.productList = m.data)
+  }
 
-  ngOnInit() {
+  SetCurrentProduct(product) {
+    this.currentProduct = product;
+  }
+
+  Save(formData) {
+    if (this.formMode == 'edit') {
+      formData.id = this.currentProduct.id;
+      this.productService.Update(formData).subscribe(m => {
+        if (m.result)
+          this.Reset();
+      });
+    }
+    else
+      this.productService.Add(formData).subscribe(m => {
+        if (m.result)
+          this.Reset();
+      });
+  }
+
+  Add() {
+    this.formMode = 'add';
+  }
+
+  Reset() {
+    this.LoadData(this.url);
+    this.currentProduct = new Product();
+    this.closeEditModal.nativeElement.click();
+    this.formMode = 'none';
+  }
+  ngOnDestroy() {
+    this.sub$.unsubscribe();
   }
 
 }

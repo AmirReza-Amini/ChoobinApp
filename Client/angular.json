@@ -23,6 +23,7 @@
             "styles": [
               "src/assets/css/demo.css",
               "src/assets/sass/app.scss",
+              "node_modules/font-awesome/css/font-awesome.min.css",
               "src/styles.css"
             ],
             "scripts": [
@@ -81,6 +82,7 @@
             "styles": [
               "src/assets/css/demo.css",
               "src/assets/sass/app.scss",
+              "node_modules/font-awesome/css/font-awesome.min.css",
               "src/styles.css"
             ],
             "assets": [

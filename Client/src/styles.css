@@ -1,5 +1,5 @@
-
 @import '../node_modules/angular-archwizard/archwizard.css';
+
 @font-face {
   font-family: 'sans';
   src: url('./assets/fonts/iransans.woff') format('woff'), url('./assets/fonts/iransans.otf') format('otf');
@@ -32,23 +32,24 @@
   font-variant: normal;
 }
 
-body,span {
+body,
+span {
   font-size: .875rem;
   direction: rtl;
   text-align: right;
   font-family: 'sans';
 }
 
-label{
+label {
   font-size: .775rem;
   direction: rtl;
   text-align: right;
   font-family: 'sans';
 }
 
-.accordion > .card .card-header {
-background:rgba(206,206,206, .3);
-   margin-bottom: 1px;
+.accordion>.card .card-header {
+  background: rgba(206, 206, 206, .3);
+  margin-bottom: 1px;
 }
 
 
@@ -59,35 +60,34 @@ background:rgba(206,206,206, .3);
 
 /* Track */
 ::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 5px grey; 
+  box-shadow: inset 0 0 5px grey;
   border-radius: 10px;
 }
- 
+
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: rgba(206,206,206, .3); 
+  background: rgba(206, 206, 206, .3);
   border-radius: 10px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(206,206,206, .3); 
+  background: rgba(206, 206, 206, .3);
 }
 
 .ngb-dp-day,
-.ngb-dp-weekday
-.ngb-dp-week .ngb-dp-weekdays {
+.ngb-dp-weekday .ngb-dp-week .ngb-dp-weekdays {
   width: 100% !important;
   height: 100% !important;
 }
 
-.dropdown-menu.show{
-    width: 100%  !important;
-    position: absolute;
-    float: left;
+.dropdown-menu.show {
+  width: 100% !important;
+  position: absolute;
+  float: left;
 }
 
-.modal-backdrop{
+.modal-backdrop {
   position: relative;
 }
 
@@ -114,21 +114,49 @@ background:rgba(206,206,206, .3);
 }
 
 @-webkit-keyframes fadein {
-  from {bottom: 0; opacity: 0;} 
-  to {bottom: 30px; opacity: 1;}
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
 }
 
 @keyframes fadein {
-  from {bottom: 0; opacity: 0;}
-  to {bottom: 30px; opacity: 1;}
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
 }
 
 @-webkit-keyframes fadeout {
-  from {bottom: 30px; opacity: 1;} 
-  to {bottom: 0; opacity: 0;}
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
+
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
 }
 
 @keyframes fadeout {
-  from {bottom: 30px; opacity: 1;}
-  to {bottom: 0; opacity: 0;}
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
+
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
 }

@@ -1,4 +1,4 @@
-export interface ApiResult {
+export interface ApiResult<T> {
     result: boolean,
-    data: any
+    data: [T]
 }

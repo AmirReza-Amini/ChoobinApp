@@ -3,18 +3,28 @@ import { RouteInfo } from './sidebar.metadata';
 export const ROUTES: RouteInfo[] = [
 
     {
-        path: '/products', title: 'محصولات', icon: 'ft-layout', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: []
+        path: '', title: 'محصولات', icon: 'ft-layout', class: 'has-sub', badge: '', badgeClass: '', isExternalLink: false, submenu: [
+            { path: '/products/necklace', title: 'گردنبند', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+            { path: '/products/bracelet', title: 'دستبند', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+            { path: '/products/ring', title: 'انگشتر', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+            { path: '/products/set', title: 'ست', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+            { path: '/products/clock', title: 'ساعت', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+            { path: '/products/serving-board', title: 'تخته سرو', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+            { path: '/products/decor', title: 'دکوری', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+
+        ]
     },
+    { path: '/categories', title: 'دسته بندی', icon: 'ft-tag', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+    { path: '/store', title: 'انبار', icon: 'ft-shopping-cart', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
     {
         path: '', title: 'حسابداری', icon: 'ft-align-left', class: 'has-sub', badge: '', badgeClass: 'badge badge-pill badge-danger float-right mr-1 mt-1', isExternalLink: false,
         submenu: [
             {
                 path: '', title: 'صورتحساب ها', icon: '', class: 'has-sub', badge: '', badgeClass: '', isExternalLink: false, submenu: [
-                    { path: '/incoming-invoices', title: 'وارده', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
-                    { path: '/issued-invoices', title: 'صادره', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] }
+                    { path: '/invoices/incoming', title: 'وارده', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+                    { path: '/invoices/issued', title: 'صادره', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] }
                 ]
-            },
-            { path: '/billing', title: 'مالی', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: true, submenu: [] }
+            }
         ]
     }
 ];
