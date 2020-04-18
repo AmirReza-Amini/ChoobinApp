@@ -20,8 +20,8 @@ export class ProductsListComponent implements OnDestroy {
   sub$: Subscription;
   formMode: FormMode = 'none'
   constructor(private productService: ProductService, categoryService: CategoryService, activatedRoute: ActivatedRoute) {
-    categoryService.GetAllCategories().subscribe(m => this.categories = m.data)
-    activatedRoute.data.subscribe(m => {
+    this.sub$ = categoryService.GetAllCategories().subscribe(m => this.categories = m.data)
+    this.sub$ = activatedRoute.data.subscribe(m => {
       this.url = m.title
       this.LoadData(m.title);
     })
@@ -33,6 +33,7 @@ export class ProductsListComponent implements OnDestroy {
   }
 
   SetCurrentProduct(product) {
+    this.formMode = 'edit';
     this.currentProduct = product;
   }
 
@@ -52,6 +53,8 @@ export class ProductsListComponent implements OnDestroy {
   }
 
   Add() {
+    this.currentProduct = new Product();
+    this.currentProduct.category = this.url;
     this.formMode = 'add';
   }
 

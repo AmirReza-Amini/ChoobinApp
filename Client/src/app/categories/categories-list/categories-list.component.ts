@@ -20,11 +20,12 @@ export class CategoriesListComponent implements OnInit {
     this.LoadData();
   }
 
-  LoadData() {
-    this.sub$ = this.categoryService.GetAllCategories()
-      .subscribe(m => this.categories = m.data)
+  async LoadData() {
+    let data = await this.categoryService.GetAllCategories().toPromise();
+    this.categories = data.data;
   }
   SetCurrentCategory(category) {
+    this.formMode = 'edit';
     this.currentCategory = category
   }
 
@@ -49,6 +50,7 @@ export class CategoriesListComponent implements OnInit {
   }
 
   Add() {
+    this.currentCategory = new Category();
     this.formMode = 'add';
   }
   Reset() {
@@ -58,7 +60,8 @@ export class CategoriesListComponent implements OnInit {
     this.formMode = 'none';
   }
   ngOnInit() {
-    this.sub$.unsubscribe();
+    if (this.sub$)
+      this.sub$.unsubscribe();
   }
 
 }

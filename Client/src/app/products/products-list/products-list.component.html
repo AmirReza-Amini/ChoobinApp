@@ -1,6 +1,7 @@
 <p class="alert alert-secondary">{{url}}</p>
 <button (click)="Add()" class="btn btn-primary pb-0" data-toggle="modal" data-target="#editModal">اضافه کردن&nbsp;<i
         class="fa fa-plus fa-lg"></i></button>
+
 <table class="table table-hover table-dark">
     <thead>
         <tr>
@@ -43,7 +44,7 @@
 <!-- Modal -->
 <div class="modal fade" dir="ltr" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel"
     aria-hidden="false">
-    <div class="modal-dialog"  role="document">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <p class="modal-title" id="editModalLabel">ویرایش</p>
@@ -56,10 +57,16 @@
                     <div class="form-row">
                         <div class="form-group col">
                             <label for="category">دسته بندی</label>
-                            <select class="form-control" id="category" name="category"
+                            <select *ngIf="formMode=='edit' else cat" class="form-control" id="category" name="category"
                                 [ngModel]="currentProduct.category">
                                 <option *ngFor="let cat of categories">{{cat.name}}</option>
                             </select>
+                            <ng-template #cat>
+                                <div class="form-group">
+                                    <input disabled type="text" class="form-control" [ngModel]="currentProduct.category"
+                                        id="category" name="category">
+                                </div>
+                            </ng-template>
                         </div>
                         <div class="form-group col-8">
                             <label for="name">نام</label>
@@ -87,7 +94,8 @@
                     </div>
 
                     <hr>
-                    <button type="button" #closeEditModal class="btn btn-secondary ml-1" data-dismiss="modal">بستن</button>
+                    <button type="button" #closeEditModal class="btn btn-secondary ml-1"
+                        data-dismiss="modal">بستن</button>
                     <button (click)="Save(f.value)" type="submit" class="btn btn-primary">ذخیره</button>
                 </form>
             </div>

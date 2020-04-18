@@ -1,3 +1,5 @@
+import { OrderListComponent } from './../../order/order-list/order-list.component';
+import { NewOrderComponent } from './../../order/new-order/new-order.component';
 import { StoreComponent } from './../../store/store/store.component';
 import { Routes, RouterModule } from '@angular/router';
 import { InvoiceListComponent } from 'app/invoice/invoice-list/invoice-list.component';
@@ -29,6 +31,13 @@ export const Full_ROUTES: Routes = [
   },
   { path: 'categories', component: CategoriesListComponent, data: { title: 'دسته بندی' } },
   { path: 'store', component: StoreComponent, data: { title: 'انبار' } },
+  {
+    path: 'order',
+    children: [
+      { path: 'new', component: NewOrderComponent, data: { title: 'ثبت سفارش جدید' } },
+      { path: 'list', component: OrderListComponent, data: { title: 'لیست سفارشات' } }
+    ]
+  },
   {
     path: 'invoices',
     children: [
