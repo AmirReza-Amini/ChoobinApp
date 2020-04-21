@@ -19,7 +19,7 @@
         <tr *ngFor="let product of productList;let i=index" class=" pb-0">
             <th scope="row">{{i+1}}</th>
             <td>{{product.name}}</td>
-            <td>{{product.code}}</td>
+            <td><h6>{{product.code}}</h6> </td>
             <td>{{product.resinAmmount}} گرم</td>
             <td>{{product.hardness}}</td>
             <td>{{product.price|number}} تومان</td>
