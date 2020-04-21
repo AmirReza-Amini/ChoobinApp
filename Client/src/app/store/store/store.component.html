@@ -17,7 +17,9 @@
         <tr *ngFor="let good of GoodList;let i=index" class=" pb-0">
             <th scope="row">{{i+1}}</th>
             <td>{{good.name}}</td>
-            <td>{{good.code}}</td>
+            <td>
+                <h6>{{good.code}}</h6>
+            </td>
             <td>{{good.ammount}} {{good.unit|unitName}}</td>
             <td>{{good.price|number}} تومان</td>
             <td>
