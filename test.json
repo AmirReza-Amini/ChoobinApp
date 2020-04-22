@@ -1,0 +1,22 @@
+[
+    {
+        "_discountType": "percent",
+        "name": "مهتاب",
+        "_qty": 1,
+        "price": 10,
+        "_discount": 0,
+        "netPrice": 10,
+        "grossPrice": 10,
+        "totalDiscount": 0
+    },
+    {
+        "_discountType": "percent",
+        "name": "دریا گرد 20سانتی",
+        "_qty": 1,
+        "price": 10,
+        "_discount": 0,
+        "netPrice": 10,
+        "grossPrice": 10,
+        "totalDiscount": 0
+    }
+]

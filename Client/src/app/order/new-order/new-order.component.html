@@ -1,1 +1,112 @@
-<p>new-order works!</p>
+<h6>{{currentOrder.items|json}}</h6>
+<form #f="ngForm" class="text-left">
+    <div class="form-row">
+        <div class="form-group col">
+            <label for="name">نام</label>
+            <input type="text" class="form-control" [(ngModel)]="currentOrder.name" id="name" name="name">
+        </div>
+        <div class="form-group  col-1">
+            <label for="gender">جنسیت</label>
+            <select name="gender" class="form-control" [(ngModel)]="currentOrder.gender" id="gender">
+                <option value="male">مرد</option>
+                <option value="female">زن</option>
+            </select>
+        </div>
+        <div class="form-group  col-2">
+            <label for="postalCode">کدپستی</label>
+            <input type="text" name="postalCode" class="form-control" [(ngModel)]="currentOrder.postalCode"
+                id="postalCode">
+        </div>
+        <div class="form-group  col-2">
+            <label for="phone">تلفن</label>
+            <input type="text" name="phone" class="form-control" [(ngModel)]="currentOrder.phone" id="phone">
+        </div>
+        <div class="form-group  col-2">
+            <label for="mobile">موبایل</label>
+            <input type="text" name="mobile" class="form-control" [(ngModel)]="currentOrder.mobile" id="mobile">
+        </div>
+        <div class="form-group  col-2">
+            <label for="orderNumber">شماره سفارش</label>
+            <input disabled type="text" name="orderNumber" class="form-control" [(ngModel)]="currentOrder.orderNumber"
+                id="orderNumber">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col">
+            <label for="address">آدرس</label>
+            <input name="address" type="text" class="form-control" [(ngModel)]="currentOrder.address" id="address">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group  col-3">
+            <label for="price">مبلغ</label>
+            <input disabled type="text" name="price" class="form-control" [(ngModel)]="currentOrder.price" id="price">
+        </div>
+        <div class="form-group  col-3">
+            <label for="discount">تخفیف</label>
+            <input disabled type="text" name="discount" class="form-control" [(ngModel)]="currentOrder.discount"
+                id="discount">
+        </div>
+        <div class="form-group  col-3">
+            <label for="totalPrice">جمع کل</label>
+            <input disabled type="text" name="totalPrice" class="form-control" [(ngModel)]="currentOrder.totalPrice"
+                id="totalPrice">
+        </div>
+        <div class="form-group  col-3">
+            <label for="status">وضعیت</label>
+            <select name="status" class="form-control" [(ngModel)]="currentOrder.status" id="status">
+                <option value="pend">معلق</option>
+                <option value="paid">پرداخت شده</option>
+                <option value="sent">ارسال شده</option>
+            </select>
+        </div>
+    </div>
+    <hr>
+    <h3>اقلام سفارش</h3>
+    <div class="form-row" *ngFor="let item of currentOrder.items">
+        <div class="form-group col-1">
+            <label for="code">کد کالا</label>
+            <input name="code" type="text" class="form-control" [(ngModel)]="item.code" id="code">
+        </div>
+        <div class="form-group col-3">
+            <label for="name">نام کالا</label>
+            <input name="name" type="text" class="form-control" [(ngModel)]="item.name" id="name">
+        </div>
+        <div class="form-group col-1">
+            <label for="qty">تعداد</label>
+            <input name="qty" type="text" class="form-control" [(ngModel)]="item.qty" id="qty">
+        </div>
+        <div class="form-group col-1">
+            <label for="price">فی</label>
+            <input disabled name="price" type="text" class="form-control" [(ngModel)]="item.price" id="price">
+        </div>
+        <div class="form-group col-1">
+            <label for="discount">تخفیف</label>
+            <input name="discount" type="text" class="form-control" [(ngModel)]="item.discount" id="discount">
+        </div>
+        <div class="form-group  col-1">
+            <label for="discountType">نوع تخفیف</label>
+            <select name="discountType" class="form-control" [(ngModel)]="item.discountType" id="discountType">
+                <option value="percent">درصد</option>
+                <option value="price">مبلغ</option>
+            </select>
+        </div>
+        <div class="form-group col-1">
+            <label for="grossPrice">مجموع قیمت</label>
+            <input disabled name="grossPrice" type="text" class="form-control" [(ngModel)]="item.grossPrice"
+                id="grossPrice">
+        </div>
+        <div class="form-group col-1">
+            <label for="totalDiscount">مجموع تخفیف</label>
+            <input disabled name="totalDiscount" type="text" class="form-control" [(ngModel)]="item.totalDiscount"
+                id="totalDiscount">
+        </div>
+        <div class="form-group col-1">
+            <label for="netPrice">مبلغ کل</label>
+            <input disabled name="netPrice" type="text" class="form-control" [(ngModel)]="item.netPrice" id="netPrice">
+        </div>
+    </div>
+    <button (click)="AddItem()" class="btn btn-success fa fa-plus btn-block"></button>
+    <hr>
+    <button (click)="Save(f.value)" type="submit" class="btn btn-primary">ذخیره</button>
+</form>

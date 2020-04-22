@@ -20,7 +20,7 @@ let invoiceSchema = mongoose.Schema({
             return this.price - this.discount
         }
     },
-    status: { type: String, default: 'Pend', enum: ['Pend', 'Paid', 'Sent'] },
+    status: { type: String, default: 'pend', enum: ['pend', 'paid', 'sent'] },
     sendData: { type: {} }, //Date,TrackingCode,Price
     createDate: { type: Date, require: true, default: Date.now() },
     creator: { type: String, default: 'admin' }

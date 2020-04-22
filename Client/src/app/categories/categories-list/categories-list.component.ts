@@ -3,6 +3,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Category } from 'app/models/Category';
 import { FormMode } from 'app/shared/util/dictionary';
 import { Subscription } from 'rxjs';
+import { FormMode } from 'app/models/types';
 
 @Component({
   selector: 'categories-list',

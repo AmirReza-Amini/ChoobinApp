@@ -1,8 +1,8 @@
-import { UnitDic, FormMode } from '../../shared/util/dictionary';
 import { StoreService } from '../store.service';
 import { Good } from '../../models/store';
 import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { UnitDic, FormMode } from 'app/models/types';
 
 @Component({
   selector: 'store',

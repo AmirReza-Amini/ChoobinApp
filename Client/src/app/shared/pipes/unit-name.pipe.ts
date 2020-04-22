@@ -1,5 +1,5 @@
-import { UnitDic } from './../util/dictionary';
 import { Pipe, PipeTransform } from '@angular/core';
+import { UnitDic } from 'app/models/types';
 
 @Pipe({
   name: 'unitName'
