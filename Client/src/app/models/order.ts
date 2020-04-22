@@ -6,15 +6,12 @@ export class Order {
         this.orderNumber = '1399000025'
         this.status = 'pend';
         this.gender = 'male';
-        this.price = this.discount = 0;
         this.date = Date.now();
         this.items = new Array();
         this.items.push(new OrderItem())
-        this.items.forEach(m => this.price += m.netPrice)
-        this.items.forEach(m => this.discount += m.totalDiscount)
-        this.totalPrice = (this.price && this.price > 0) ? this.price - this.discount : 0;
-
+        this.totalPrice = this.price || 0 - this.discount;
     }
+
     orderNumber: string;
     name: string;
     address: string;
@@ -22,11 +19,31 @@ export class Order {
     postalCode: string;
     phone: string;
     mobile: string;
-    price: number;
-    discount: number;
-    totalPrice: number;
     date: number;
     status: OrderStatus;
-    items: OrderItem[]
+    items: OrderItem[];
+
+    public get price(): number {
+        return this.items.reduce((a, b) => a + (b.grossPrice), 0);
+    }
+    public get discount(): number {
+        return this.items.reduce((a, b) => a + (b.totalDiscount), 0);
+    }
+    public get totalPrice(): number {
+        return this.items.reduce((a, b) => a + (b.netPrice), 0);
+    }
+
+    public set price(v: number) {
+        console.log(v)
+    }
+    public set discount(v: number) {
+        console.log(v)
+    }
+    public set totalPrice(v: number) {
+        console.log(v)
+    }
+
+
+
 }
 

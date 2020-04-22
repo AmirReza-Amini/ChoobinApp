@@ -5,7 +5,7 @@ export class OrderItem {
         this._discountType = 'percent';
         this.name = this.name ? this.name : '';
         this._qty = 1;
-        this.price = (Math.random() * 10) % 10;
+        this.price = 300;
         // this.price =
         this._discount = 0;
         this.SetPriceDiscount();
@@ -20,24 +20,24 @@ export class OrderItem {
     grossPrice: number;
     totalDiscount: number;
 
-    public set discount(v: number) {
-        this._discount = v;
+    public set discount(value: number) {
+        this._discount = value;
         this.SetPriceDiscount();
     }
     public get discount(): number {
         return this._discount;
     }
 
-    public set qty(v: number) {
-        this._qty = v;
+    public set qty(value: number) {
+        this._qty = value;
         this.SetPriceDiscount();
     }
     public get qty(): number {
         return this._qty;
     }
 
-    public set discountType(v: DiscountType) {
-        this._discountType = v;
+    public set discountType(value: DiscountType) {
+        this._discountType = value;
         this.SetPriceDiscount();
     }
 
@@ -46,7 +46,9 @@ export class OrderItem {
     }
 
     private SetPriceDiscount() {
-        this.netPrice = this.qty * (this.discountType == 'percent' ? this.price * ((100 - this.discount) / 100.0) : this.price - this.discount);
+        this.netPrice = this.qty * (this.discountType == 'percent'
+            ? this.price * ((100 - this.discount) / 100.0)
+            : this.price - this.discount);
         this.grossPrice = this.price * this.qty;
         this.totalDiscount = this.qty * this.discount;
     }

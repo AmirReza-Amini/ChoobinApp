@@ -1,22 +1,30 @@
-[
-    {
-        "_discountType": "percent",
-        "name": "مهتاب",
-        "_qty": 1,
-        "price": 10,
-        "_discount": 0,
-        "netPrice": 10,
-        "grossPrice": 10,
-        "totalDiscount": 0
-    },
-    {
-        "_discountType": "percent",
+{
+    "orderNumber": "1399000025",
+    "status": "pend",
+    "gender": "male",
+    "discount": 0,
+    "price": 300,
+    "date": 1587583636165,
+    "items": [{
+        "_discountType": "price",
         "name": "دریا گرد 20سانتی",
-        "_qty": 1,
-        "price": 10,
+        "_qty": "2",
+        "price": 300,
         "_discount": 0,
-        "netPrice": 10,
-        "grossPrice": 10,
-        "totalDiscount": 0
-    }
-]
+        "netPrice": 600,
+        "grossPrice": 600,
+        "totalDiscount": 0,
+        "code": "001"
+    }, {
+        "_discountType": "percent",
+        "name": "بند چرمی مشکی ضخیم",
+        "_qty": "3",
+        "price": 300,
+        "_discount": 0,
+        "netPrice": 900,
+        "grossPrice": 900,
+        "totalDiscount": 0,
+        "code": "002"
+    }],
+    "totalPrice": 300
+}
