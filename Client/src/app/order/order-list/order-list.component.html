@@ -1,1 +1,43 @@
-<p>order-list works!</p>
+<table class="table table-hover table-dark">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">نام و نام خانوادگی</th>
+            <th scope="col">کد</th>
+            <th scope="col">تعداد</th>
+            <th scope="col">تاریخ سفارش</th>
+            <th scope="col">تاریخ پرداخت</th>
+            <th scope="col">تاریخ ارسال</th>
+            <th scope="col">قیمت</th>
+            <th scope="col">وضعیت</th>
+            <th scope="col">عملیات</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let order of orderList;let i=index" class=" pb-0">
+            <th scope="row">{{i+1}}</th>
+            <td>{{order.customer.fullName}}</td>
+            <td>{{order.orderNumber}}</td>
+            <td>{{order.items.length}}</td>
+            <td>{{order.createDate|persianDate}}</td>
+            <td>{{order.payment?.date|persianDate}}</td>
+            <td>{{order.sendData?.date|persianDate}}</td>
+            <td>{{order.totalPrice|number}} تومان</td>
+            <td>{{order.status|orderStatus}}</td>
+            <td>
+                <button (click)="SetCurrentOrder(order)" class="btn btn-primary pb-0 mr-1" data-toggle="modal"
+                    data-target="#editModal">
+                    <i class="ft-edit"></i>
+                </button>
+                <button (click)="SetCurrentOrder(order)" class="btn btn-success pb-0 mr-1" data-toggle="modal"
+                    data-target="#editModal">
+                    <i class="ft-shopping-cart"></i>
+                </button>
+                <button class="btn btn-danger pb-0">
+                    <i class="ft-trash-2"></i>
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>

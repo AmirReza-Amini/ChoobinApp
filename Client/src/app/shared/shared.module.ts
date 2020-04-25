@@ -21,6 +21,7 @@ import { PersianDatePipe } from './pipes/persian-date.pipe';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { JalaliDatePickerComponent } from './user-control/jalali-date-picker/jalali-date-picker.component';
 import { UnitNamePipe } from './pipes/unit-name.pipe';
+import { OrderStatusPipe } from './pipes/order-status.pipe';
 
 @NgModule({
     exports: [
@@ -39,7 +40,8 @@ import { UnitNamePipe } from './pipes/unit-name.pipe';
         PersianDatePipe,
         JalaliDatePickerComponent,
         JalaliDatePickerComponent,
-        UnitNamePipe
+        UnitNamePipe,
+        OrderStatusPipe
     ],
     imports: [
         RouterModule,
@@ -65,6 +67,7 @@ import { UnitNamePipe } from './pipes/unit-name.pipe';
         PersianDatePipe,
         JalaliDatePickerComponent,
         UnitNamePipe,
+        OrderStatusPipe,
     ]
 })
 export class SharedModule { }

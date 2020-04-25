@@ -2,48 +2,59 @@ import { DiscountType } from './types';
 
 export class OrderItem {
     constructor() {
-        this._discountType = 'percent';
+        this.discountType = 'percent';
         this.name = this.name ? this.name : '';
-        this._qty = 1;
-        this.price = 300;
-        // this.price =
-        this._discount = 0;
+        this.qty = 1;
+        this.price = 0;
+        this.discount = 0;
         this.SetPriceDiscount();
     }
-    private _qty: number;
-    private _discount: number;
-    private _discountType: DiscountType;
+    private qty: number;
+    private discount: number;
+    private price: number;
+    private discountType: DiscountType;
     name: string;
     code: string;
-    price: number;
     netPrice: number;
     grossPrice: number;
     totalDiscount: number;
 
-    public set discount(value: number) {
-        this._discount = value;
+    public set _discount(value: number) {
+        this.discount = value;
         this.SetPriceDiscount();
     }
-    public get discount(): number {
-        return this._discount;
+    public get _discount(): number {
+        return this.discount;
     }
 
-    public set qty(value: number) {
-        this._qty = value;
+    public set _qty(value: number) {
+        this.qty = value;
         this.SetPriceDiscount();
     }
-    public get qty(): number {
-        return this._qty;
+    public get _qty(): number {
+        return this.qty;
     }
 
-    public set discountType(value: DiscountType) {
-        this._discountType = value;
+    public set _discountType(value: DiscountType) {
+        this.discountType = value;
         this.SetPriceDiscount();
     }
 
-    public get discountType(): DiscountType {
-        return this._discountType;
+    public get _discountType(): DiscountType {
+        return this.discountType;
     }
+
+
+    public set _price(v: number) {
+        this.price = v;
+        this.SetPriceDiscount();
+    }
+
+    public get _price(): number {
+        return this.price;
+    }
+
+
 
     private SetPriceDiscount() {
         this.netPrice = this.qty * (this.discountType == 'percent'

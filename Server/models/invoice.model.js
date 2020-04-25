@@ -1,25 +1,25 @@
 const mongoose = require('../bootstrap/mongodb');
 const { customerSchema } = require('./customer.model');
-const { productSchema } = require('./product.model');
 
 let itemsSchema = mongoose.Schema({
-    product: productSchema,
+    name: { type: String },
+    code: { type: String },
+    netPrice: { type: Number, require: true },
     price: { type: Number, require: true },
-    discount: { type: Number, default: 0 },
-    qty: { type: Number, default: 1 },
-    accessories: { type: [String] }
+    discount: { type: Number, require: true },
+    discountType: { type: String, default: 'percent', enum: ['percent', 'price'] },
+    grossPrice: { type: Number, require: true },
+    totallDiscount: { type: Number, default: 0 },
+    qty: { type: Number, default: 1 }
 });
 
 let invoiceSchema = mongoose.Schema({
+    orderNumber: { type: String },
     items: [itemsSchema],
     customer: customerSchema,
     price: { type: Number, default: 0 },
     discount: { type: Number, default: 0 },
-    payable: {
-        type: Number, default: function () {
-            return this.price - this.discount
-        }
-    },
+    totalPrice: { type: Number, default: 0 },
     status: { type: String, default: 'pend', enum: ['pend', 'paid', 'sent'] },
     sendData: { type: {} }, //Date,TrackingCode,Price
     createDate: { type: Date, require: true, default: Date.now() },

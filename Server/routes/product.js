@@ -7,9 +7,11 @@ const { Map } = require('../util/utility')
 const { Save, GetAll } = require('../util/GenericMethods')
 
 router.get('/:category', async (req, res) => {
-    let cat = req.params.category;
+    console.log("req.params.category", req.params.category)
+    let cat = JSON.parse(req.params.category);
+    console.log("cat", cat)
     let resin = await storeModel.findOne({ 'code': 'RESIN_WATERY' })
-    let products = (await productModel.find({ 'category': cat }))
+    let products = (await productModel.find(cat))
         .map(p => {
             return {
                 id: p._id,
@@ -23,6 +25,7 @@ router.get('/:category', async (req, res) => {
         })
 
     res.json(Object.assign(req.base, {
+        result: products.length > 0,
         data: products
     }))
 });

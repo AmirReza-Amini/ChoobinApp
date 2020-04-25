@@ -28,7 +28,7 @@ export class ProductsListComponent implements OnDestroy {
   }
 
   LoadData(category) {
-    this.sub$ = this.productService.GetProducts(category)
+    this.sub$ = this.productService.GetProducts({ 'category': category })
       .subscribe(m => this.productList = m.data)
   }
 

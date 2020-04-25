@@ -6,6 +6,8 @@ import { DateFormat, ToPersian } from 'ara-persian-cal';
 export class PersianDatePipe implements PipeTransform {
 
   transform(value: any, format: datePattern): any {
+    if (!value)
+      return '---'
     if (value == '---')
       return value;
 

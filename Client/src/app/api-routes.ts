@@ -6,7 +6,8 @@ export const API_ROUTE = {
         get_token: GlobalUrl + 'auth/get-token'
     },
     INVOICE: {
-        GET: GlobalUrl + 'invoice/'
+        GET: GlobalUrl + 'invoice/',
+        POST: GlobalUrl + 'invoice/'
     },
     PRODUCT: {
         GET: GlobalUrl + 'product/',
