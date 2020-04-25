@@ -4,24 +4,25 @@ import { OrderItem } from './order-item';
 
 export class Order {
     constructor() {
-        this.orderNumber = '1399000025'
+        this.orderNumber = '---'
         this.status = 'pend';
         this.customer = new Customer();
         this.customer.gender = 'male';
-        this.createDate = Date.now();
+        this.createDate = new Date().toISOString();
         this.items = new Array();
         this.items.push(new OrderItem())
         this.totalPrice = this.price || 0 - this.discount;
         this.creator = 'admin';
     }
-    private price: number;
-    private discount: number;
-    private totalPrice: number;
+    price: number;
+    discount: number;
+    totalPrice: number;
     orderNumber: string;
     customer: Customer;
-    createDate: number;
+    createDate: string;
     status: OrderStatus;
     items: OrderItem[];
+    totalQty: number;
     sendData: { date: Date; trackingCode: string; };
     payment: { date: Date; trackingCode: string; }
     creator: String;

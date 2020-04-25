@@ -14,9 +14,13 @@ export class NewOrderComponent implements OnInit {
   currentOrder: Order = new Order();
   constructor(private productService: ProductService, private orderService: OrderService) { }
 
-  Save(data) {
+  Save(data: Order) {
+    data.totalQty = data.items.reduce((a, b) => parseInt(a.toString()) + (parseInt(b._qty.toString()) || 0), 0)
     this.orderService.Add(data)
-      .subscribe(m => console.log(m))
+      .subscribe(m => {
+        if (m.result)
+          this.currentOrder.orderNumber = m.data[0].orderNumber
+      })
   }
 
   SearchByCode(event: KeyboardEvent, code: string, index: number) {

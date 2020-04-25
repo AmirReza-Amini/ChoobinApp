@@ -45,9 +45,12 @@
                 id="_price">
         </div>
         <div class="form-group  col-3">
-            <label for="_discount">تخفیف</label>
+            <!-- <label for="_discount">تخفیف</label>
             <input disabled type="text" name="_discount" class="form-control" [ngModel]="currentOrder._discount|number"
-                id="_discount">
+                id="_discount"> -->
+            <label for="date">تاریخ</label>
+            <input disabled type="text" name="date" class="form-control" [ngModel]="currentOrder.createDate|persianDate"
+                id="date">
         </div>
         <div class="form-group  col-3">
             <label for="_totalPrice">جمع کل</label>

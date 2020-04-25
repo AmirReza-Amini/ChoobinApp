@@ -1,30 +1,17 @@
 const express = require('express');
 const router = express.Router();
 const Invoice = require('../models/invoice.model');
-const { Map } = require('../util/utility')
+const { Map, GenerateNo, SendResponse } = require('../util/utility')
+const { GetLast, GetAll } = require('../util/GenericMethods')
 router.get('/:id?', async (req, res) => {
     try {
         let invoiceId = req.params.id;
         let condition = invoiceId ? { _id: invoiceId } : {};
         let doc = (await Invoice.find(condition))
-            // .map(m => {
-            //     return {
-            //         fullName: m.customer.fullName,
-            //         orderNumber: m.orderNumber,
-            //         createDate: m.createDate,
-            //         status: m.status,
-            //         totalPrice: m.totalPrice
-            //     }
-            // });
-        return res.json(Object.assign(req.base, {
-            data: doc
-        }));
+        return SendResponse(req, res, doc);
     }
     catch (ex) {
-        return res.json(Object.assign(req.base, {
-            result: false,
-            data: ex.message
-        }));
+        return SendResponse(req, res, ex.message, false);
     }
 });
 
@@ -32,17 +19,23 @@ router.route('/')
     .post(async (req, res) => {
         let invoice = Invoice();
         Map(req.body, invoice)
+
+        let lastNo = (await Invoice
+            .find()
+            .select({ 'orderNumber': 1 })
+            .sort({ '_id': -1 }));
+        console.log("lastNo", lastNo)
+
+        invoice.orderNumber = GenerateNo(lastNo.length > 0
+            ? lastNo[0].orderNumber
+            : '');
+
         try {
             await invoice.save();
-            res.json(Object.assign(req.base, {
-                data: invoice
-            }))
+            return SendResponse(req, res, invoice);
         }
         catch (ex) {
-            res.json(Object.assign(req.base, {
-                result: false,
-                data: ex.message
-            }))
+            return SendResponse(req, res, ex.message, false);
         }
     });
 

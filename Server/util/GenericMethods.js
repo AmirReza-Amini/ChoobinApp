@@ -61,6 +61,10 @@ getOne = async (entity, req, res, opt = {}) => {
     SendResponse(req, res, doc, doc != null)
 }
 
+getLast = async (entity, req, res, opt = {}) => {
+    getAll(entity, req, res, { filter: opt ? opt : {} });
+}
+
 FindAndUpdate = async (entity, req, res, condition, update) => {
     let doc = await entity.findOne(condition);
     if (doc) {
@@ -97,6 +101,7 @@ module.exports = {
     Delete: softDelete,
     GetAll: getAll,
     GetOne: getOne,
+    GetLast: getLast,
     HardDelete: hardDelete,
     Save: save
 }
