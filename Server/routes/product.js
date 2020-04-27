@@ -6,12 +6,11 @@ const router = express.Router();
 const { Map } = require('../util/utility')
 const { Save, GetAll } = require('../util/GenericMethods')
 
-router.get('/:category', async (req, res) => {
-    console.log("req.params.category", req.params.category)
-    let cat = JSON.parse(req.params.category);
-    console.log("cat", cat)
+router.get('/:category?', async (req, res) => {
+    let condition = req.params.category? JSON.parse(req.params.category):{};
+    console.log("cat", condition)
     let resin = await storeModel.findOne({ 'code': 'RESIN_WATERY' })
-    let products = (await productModel.find(cat))
+    let products = (await productModel.find(condition))
         .map(p => {
             return {
                 id: p._id,

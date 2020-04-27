@@ -12,7 +12,7 @@ export class ProductService {
 
   constructor(private http: HttpClient) { }
 
-  GetProducts(category): Observable<ApiResult<Product>> {
+  GetProducts(category={}): Observable<ApiResult<Product>> {
     let cat = JSON.stringify(category)
     return this.http.get<ApiResult<Product>>(API_ROUTE.PRODUCT.GET + cat)
   }

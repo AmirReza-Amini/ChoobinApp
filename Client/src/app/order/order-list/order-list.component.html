@@ -19,7 +19,7 @@
             <th scope="row">{{i+1}}</th>
             <td>{{order.customer.fullName}}</td>
             <td>{{order.orderNumber}}</td>
-            <td><button (click)="SetCurrentOrder(order)" class="btn btn-primary pb-0" data-toggle="modal"
+            <td><button (click)="SetCurrentOrder(order)" class="btn btn-success pb-0" data-toggle="modal"
                     data-target="#HistoryModal">{{order.totalQty}}</button></td>
             <td>{{order.createDate|persianDate}}</td>
             <td>{{order.payment?.date|persianDate}}</td>

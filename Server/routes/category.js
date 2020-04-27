@@ -23,8 +23,6 @@ router.route('/')
         Save(cat, req, res)
     })
     .put(async (req, res) => {
-         
-        console.log("'HI'", 'HI')
         let category = await Category.findById(req.body.id);
         console.log("category", category)
         Map(req.body, category);

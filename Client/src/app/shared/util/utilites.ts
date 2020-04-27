@@ -19,6 +19,10 @@ export function AreEquivalent(source, destination): boolean {
     return true;
 }
 
+export function Distinct<T>(inputArray: T[]): T[] {
+    return inputArray.filter((n, i) => inputArray.indexOf(n) === i);
+}
+
 export async function delay(ms: number) {
     await new Promise(resolve => setTimeout(() => resolve(), ms)).then(() => console.log("wait..."));
 }

@@ -1,8 +1,9 @@
 <form #f="ngForm" class="text-left">
     <div class="form-row">
         <div class="form-group col">
-            <label for="name">نام و نام خانوادگی</label>
-            <input type="text" class="form-control" [(ngModel)]="currentOrder.customer.fullName" id="name" name="name">
+            <label for="fullName">نام و نام خانوادگی</label>
+            <input type="text" class="form-control" [(ngModel)]="currentOrder.customer.fullName" id="fullName"
+                name="fullName">
         </div>
         <div class="form-group  col-1">
             <label for="gender">جنسیت</label>
@@ -40,14 +41,11 @@
     </div>
     <div class="form-row">
         <div class="form-group  col-3">
-            <label for="_price">مبلغ</label>
-            <input disabled type="text" name="_price" class="form-control" [ngModel]="currentOrder._price|number"
-                id="_price">
+            <label for="price">مبلغ</label>
+            <input disabled type="text" name="price" class="form-control" [ngModel]="currentOrder.price|number"
+                id="price">
         </div>
         <div class="form-group  col-3">
-            <!-- <label for="_discount">تخفیف</label>
-            <input disabled type="text" name="_discount" class="form-control" [ngModel]="currentOrder._discount|number"
-                id="_discount"> -->
             <label for="date">تاریخ</label>
             <input disabled type="text" name="date" class="form-control" [ngModel]="currentOrder.createDate|persianDate"
                 id="date">
@@ -59,7 +57,7 @@
         </div>
         <div class="form-group  col-3">
             <label for="status">وضعیت</label>
-            <select name="status" class="form-control" [(ngModel)]="currentOrder.status" id="status">
+            <select name="status" class="custom-select" [(ngModel)]="currentOrder.status" id="status">
                 <option value="pend">معلق</option>
                 <option value="paid">پرداخت شده</option>
                 <option value="sent">ارسال شده</option>
@@ -76,7 +74,8 @@
         </div>
         <div class="form-group col">
             <label for="name">نام کالا</label>
-            <input [name]="'name'+i" type="text" class="form-control" [(ngModel)]="item.name" id="name">
+            <input [name]="'name'+i" type="button" class="form-control btn btn-primary" [(ngModel)]="item.name"
+                id="name" data-toggle="modal" data-target="#selectProductModal" (click)="index=i">
         </div>
         <div class="form-group col-1">
             <label for="_qty">تعداد</label>
@@ -119,3 +118,56 @@
     <hr>
     <button (click)="Save(currentOrder)" type="submit" class="btn btn-primary">ذخیره</button>
 </form>
+
+
+
+<div class="modal fade" dir="ltr" id="selectProductModal" tabindex="-1" role="dialog"
+    aria-labelledby="selectProductModalLabel" aria-hidden="false">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="modal-title" id="selectProductModalLabel">انتخاب محصول</p>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="ModalClosed()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-hover table-dark table-sm" dir="rtl">
+                    <thead>
+                        <tr class="form-group">
+                            <th scope="col">#</th>
+                            <th scope="col">
+                                <select [(ngModel)]='searchOption.category'
+                                    (change)="FilterProduct('category',$event.target.value)">
+                                    <option value="">همه</option>
+                                    <option [value]='cat' *ngFor="let cat of categories">{{cat}}</option>
+                                </select>
+                            </th>
+                            <th scope="col">
+                                <input [(ngModel)]='searchOption.name' (keyup)="FilterProduct('name',name.value)" #name
+                                    type="text" placeholder="نام">
+                            </th>
+                            <th scope="col">
+                                <input [(ngModel)]='searchOption.code' (keyup)="FilterProduct('code',code.value)" #code
+                                    type="text" width="10" placeholder="کد">
+                            </th>
+                            <th scope="col">قیمت</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let product of filteredProductList.slice(0,10);let i=index"
+                            (click)="SelectProduct(product,i)" class=" pb-0">
+                            <th scope="row">{{i+1}}</th>
+                            <td>{{product.category}}</td>
+                            <td>{{product.name}}</td>
+                            <td>{{product.code}}</td>
+                            <td>{{product.price|number}} تومان</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button  type="button" #closeModal class="btn btn-secondary ml-1"
+                    data-dismiss="modal">بستن</button>
+            </div>
+        </div>
+    </div>
+</div>

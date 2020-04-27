@@ -1,11 +1,12 @@
 import { DiscountType } from './types';
 
 export class OrderItem {
-    constructor() {
+    constructor(code: string = '', name: string = '', price: number = 0) {
         this.discountType = 'percent';
-        this.name = this.name ? this.name : '';
+        this.name = name;
+        this.code = code;
         this.qty = 1;
-        this.price = 0;
+        this.price = price;
         this.discount = 0;
         this.SetPriceDiscount();
     }
