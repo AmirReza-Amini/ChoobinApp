@@ -8,18 +8,20 @@ export class Order {
         this.status = 'pend';
         this.customer = new Customer();
         this.customer.gender = 'male';
-        this.createDate = new Date().toISOString();
+        this.createDate = new Date();
         this.items = new Array();
         this.items.push(new OrderItem())
         this.totalPrice = this.price || 0 - this.discount;
         this.creator = 'admin';
+        this.payment = { date: new Date(), trackingCode: '' }
     }
+    _id: string;
     price: number;
     discount: number;
     totalPrice: number;
     orderNumber: string;
     customer: Customer;
-    createDate: string;
+    createDate: Date;
     status: OrderStatus;
     items: OrderItem[];
     totalQty: number;

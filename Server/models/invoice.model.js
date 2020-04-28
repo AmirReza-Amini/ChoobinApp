@@ -23,6 +23,7 @@ let invoiceSchema = mongoose.Schema({
     totalQty: { type: Number },
     status: { type: String, default: 'pend', enum: ['pend', 'paid', 'sent'] },
     sendData: { type: {} }, //Date,TrackingCode,Price
+    payment: { type: {} }, //Date, TrackingCode
     createDate: { type: Date, require: true, default: Date.now() },
     creator: { type: String, default: 'admin' }
 });

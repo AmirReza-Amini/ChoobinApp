@@ -7,7 +7,8 @@ export const API_ROUTE = {
     },
     INVOICE: {
         GET: GlobalUrl + 'invoice/',
-        POST: GlobalUrl + 'invoice/'
+        POST: GlobalUrl + 'invoice/',
+        PUT: GlobalUrl + 'invoice/'
     },
     PRODUCT: {
         GET: GlobalUrl + 'product/',

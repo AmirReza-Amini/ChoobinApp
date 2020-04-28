@@ -32,5 +32,21 @@ export function GetSecureHeader(): HttpHeaders {
         .set('authorization', `Bearer ${localStorage.getItem('token')}`);
     return header;
 }
+
+export function Map(source, dest, excludeList = []) {
+    let propertyList = Object.getOwnPropertyNames(source).filter(m => !excludeList.includes(m));
+    propertyList.forEach(p => {
+        dest[p] = source[p];
+    })
+}
+
+
+export function GetIndex(array, key, value): number {
+    for (let i = 0; i < array.length; i++)
+        if (array[i][key] == value)
+            return i;
+    return -1;
+}
+
 export const tokenHashKey = '8c10%$#f9be0b053082'
 export const defaultPassword = '123456'

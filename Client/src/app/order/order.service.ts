@@ -15,7 +15,11 @@ export class OrderService {
   Get(id: string = ''): Observable<ApiResult<Order>> {
     return this.http.get<ApiResult<Order>>(API_ROUTE.INVOICE.GET + id);
   }
-  Add(order): Observable<ApiResult<Order>> {
+  Add(order: Order): Observable<ApiResult<Order>> {
     return this.http.post<ApiResult<Order>>(API_ROUTE.INVOICE.POST, order)
+  }
+
+  UpdateStatus(order: Order): Observable<ApiResult<Order>> {
+    return this.http.put<ApiResult<Order>>(API_ROUTE.INVOICE.PUT, order)
   }
 }

@@ -82,15 +82,10 @@ FindAndUpdate = async (entity, req, res, condition, update) => {
 save = async (entity, req, res) => {
     try {
         await entity.save();
-        res.json(Object.assign(req.base, {
-            data: entity
-        }))
+        SendResponse(req, res, entity);
     }
     catch (ex) {
-        res.json(Object.assign(req.base, {
-            result: false,
-            data: ex.message
-        }))
+        SendResponse(req, res, ex.message, false);
     }
 }
 

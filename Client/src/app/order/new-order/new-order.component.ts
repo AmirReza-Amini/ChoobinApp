@@ -59,7 +59,7 @@ export class NewOrderComponent implements OnInit {
     this.orderService.Add(data)
       .subscribe(m => {
         if (m.result)
-          this.currentOrder.orderNumber = m.data[0].orderNumber
+          this.currentOrder.orderNumber = m.data[0].orderNumber;
       })
   }
 
