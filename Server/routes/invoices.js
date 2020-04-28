@@ -3,6 +3,7 @@ const router = express.Router();
 const Invoice = require('../models/invoice.model');
 const { Map, GenerateNo, SendResponse } = require('../util/utility')
 const { Save } = require('../util/GenericMethods')
+const { ToPersian } = require('ara-persian-cal')
 const moment = require('moment')
 moment.locale('fa-IR')
 router.get('/:id?', async (req, res) => {
@@ -40,32 +41,35 @@ router.route('/')
             return SendResponse(req, res, ex.message, false);
         }
     })
-    .put(async (req, res) => {
-        console.log("moment(new Date())", moment(new Date()).format())
+router.put('/update-status', async (req, res) => {
+    let order = await Invoice.findById(req.body._id);
+    if (order.status == 'sent')
+        return SendResponse(req, res, { message: 'این سفارش بسته شده است' }, false)
 
-        let order = await Invoice.findById(req.body._id);
-        console.log("req.body", req.body)
-        if (order.status == 'sent')
-            return SendResponse(req, res, { message: 'این سفارش بسته شده است' }, false)
+    switch (req.body.status) {
+        case 'pend':
+            order.payment = {};
+            break;
+        case 'paid':
+            order.payment = { date: ToPersian(moment(new Date()).format()), trackingCode: '0123' };
+            break;
+        case 'sent':
+            if (order.status == 'paid') {
+                order.sendData = { date: ToPersian(moment(new Date()).format()), tackingCode: '', price: 10000 };
+            }
+            else
+                return SendResponse(req, res, { message: 'صورتحساب این سفارش پرداخت نشده است' }, false)
+            break;
+    }
+    order.status = req.body.status;
+    return Save(order, req, res)
+})
 
-
-        switch (req.body.status) {
-            case 'pend':
-                order.payment = {};
-                break;
-            case 'paid':
-                order.payment = { date: moment(new Date()).format(), trackingCode: '0123' };
-                break;
-            case 'sent':
-                if (order.status == 'paid') {
-                    order.sendData = { date: moment(new Date()).format(), tackingCode: '', price: 10000 };
-                }
-                else
-                    return SendResponse(req, res, { message: 'صورتحساب این سفارش پرداخت نشده است' }, false)
-                break;
-        }
-        order.status = req.body.status;
-        return Save(order, req, res)
-    })
+router.put('/save-ps', async (req, res) => {
+    //ps = payment or send
+    let order = await Invoice.findById(req.body._id);
+    order[req.body.ps] = { date: order[req.body.ps].date, trackingCode: req.body.trackingCode || '---' }
+    return Save(order, req, res);
+})
 
 module.exports = router;

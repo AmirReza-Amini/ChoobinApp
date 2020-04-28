@@ -23,18 +23,18 @@
                 <button (click)="SetCurrentOrder(order)" class="btn btn-round btn-success pb-0" data-toggle="modal"
                     data-target="#HistoryModal">{{order.totalQty}}</button></td>
             <td dir="ltr">{{order.createDate|persianDate:'DST'}}</td>
-            <td>
+            <td dir="ltr">
                 <span *ngIf="!order.payment?.date; else paidBtn">{{order.payment?.date|persianDate}}</span>
                 <ng-template #paidBtn>
                     <button (click)="SetCurrentOrder(order)" class="btn btn-round btn-info pb-0" data-toggle="modal"
-                        data-target="#paymentModal">{{order.payment?.date|persianDate }}</button>
+                        data-target="#paymentModal">{{order.payment?.date}}</button>
                 </ng-template>
             </td>
-            <td>
+            <td dir="ltr">
                 <span *ngIf="!order.sendData?.date; else sendBtn">{{order.sendData?.date|persianDate}}</span>
                 <ng-template #sendBtn>
                     <button (click)="SetCurrentOrder(order)" class="btn btn-round btn-warning pb-0" data-toggle="modal"
-                        data-target="#HistoryModal">{{order.sendData?.date|persianDate }}</button>
+                        data-target="#sendModal">{{order.sendData?.date}}</button>
                 </ng-template>
             </td>
             <td>{{order.totalPrice|number}} تومان</td>
@@ -104,20 +104,57 @@
         <div class="modal-content">
             <div class="modal-header">
                 <p class="modal-title" id="paymentModalLabel">جزئیات پرداخت</p>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" #closePaymentModal data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <span>{{currentOrder.payment|json}}</span>
-                <div class="form-row">
-                    <input [ngModel]="currentOrder.payment.date | persianDate: 'DST'" class='form-control col ml-1'
-                        type="text" placeholder="تاریخ">
-                    <input [ngModel]='currentOrder.payment.trackingCode' class='form-control col' type="text"
-                        placeholder="کد پیگیری">
+                <div class="form-row" *ngIf="currentOrder.payment">
+                    <div class="form-group col-6">
+                        <label for="paymentDate">تاریخ پرداخت</label>
+                        <input disabled #paymentDate id="paymentDate" [ngModel]="currentOrder.payment.date"
+                            class='form-control' type="text" placeholder="تاریخ">
+                    </div>
+                    <div class="form-group col-6">
+                        <label for="paymentTrackingCode">کد پیگیری</label>
+                        <input #paymentTrackingCode id="paymentTrackingCode"
+                            [ngModel]='currentOrder.payment.trackingCode' class='form-control' type="text"
+                            placeholder="کد پیگیری">
+                    </div>
                 </div>
                 <hr>
-                <button class="btn btn-primary">ذخیره</button>
+                <button (click)="SavePS('payment')" class="btn btn-primary">ذخیره</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" dir="ltr" id="sendModal" tabindex="-1" role="dialog" aria-labelledby="sendModalLabel"
+    aria-hidden="false">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="modal-title" id="sendModalLabel">جزئیات ارسال</p>
+                <button type="button" class="close" #closeSendModal data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-row" *ngIf="currentOrder.sendData">
+                    <div class="form-group col-6">
+                        <label for="sendDate">تاریخ ارسال</label>
+                    <input disabled #sendDate id="sendDate" [ngModel]="currentOrder.sendData.date" class='form-control col ml-1'
+                        type="text" placeholder="تاریخ">
+                    </div>
+                    <div class="form-group col-6">
+                        <label for="sendTrackingCode">کد رهگیری</label>
+                    <input #sendTrackingCode id="sendTrackingCode" [ngModel]='currentOrder.sendData.trackingCode' class='form-control col'
+                        type="text" placeholder="کد رهگیری">
+                    </div>
+                    <a href="https://tracking.post.ir/" target='_blank' class="btn btn-success btn-round btn-block mb-0">رهگیری از پست</a>
+                </div>
+                <hr>
+                <button (click)="SavePS('sendData')" class="btn btn-primary">ذخیره</button>
             </div>
         </div>
     </div>

@@ -20,6 +20,10 @@ export class OrderService {
   }
 
   UpdateStatus(order: Order): Observable<ApiResult<Order>> {
-    return this.http.put<ApiResult<Order>>(API_ROUTE.INVOICE.PUT, order)
+    return this.http.put<ApiResult<Order>>(API_ROUTE.INVOICE.UPDATE_STATUS, order)
+  }
+
+  SetPS(paymentData): Observable<ApiResult<Order>> {
+    return this.http.put<ApiResult<Order>>(API_ROUTE.INVOICE.SAVE_PS, paymentData)
   }
 }
