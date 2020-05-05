@@ -35,7 +35,8 @@ router.put('/by', async (req, res) => {
     good.ammount = good.ammount + req.body.ammount;
     good.byList.push({
         ammount: req.body.ammount,
-        price: req.body.price
+        price: req.body.price,
+        date: req.body.date
     })
     Save(good, req, res)
 })

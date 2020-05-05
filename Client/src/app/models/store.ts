@@ -1,3 +1,4 @@
+type DateModel = shared.userControl.persianDatePicker.dateModel;
 export class Good {
     constructor() {
         this.name =
@@ -15,10 +16,17 @@ export class Good {
     ammount: number;
     orderPoint: number;
     price: number;
-    byList: [{
-        date: Date;
-        ammount: number;
-        price: number;
-    }];
+    byList: [ByItem];
     exist: boolean;
+}
+
+export class ByItem {
+    constructor() {
+        this.date = { garegorianDate: '1989/08/06', persianDate: '1368/05/15' }
+        this.ammount = 1;
+        this.price = 1000
+    }
+    date: DateModel;
+    ammount: number;
+    price: number;
 }

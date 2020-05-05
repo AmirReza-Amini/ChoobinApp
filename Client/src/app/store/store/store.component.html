@@ -118,6 +118,7 @@
             <div class="modal-body">
                 <form #f2="ngForm" class="text-left">
                     <div class="form-row">
+
                         <div class="form-group  col">
                             <label for="ammount">مقدار / تعداد</label>
                             <input min="0.5" step="0.5" [ngModel]='byObject.ammount' name="ammount" type="number"
@@ -128,6 +129,13 @@
                             <input min="1" type="number" [ngModel]='byObject.price' name="price" class="form-control"
                                 id="price">
                         </div>
+
+                    </div>
+                    <div class="form-group  col-7">
+                        <label for="date">تاریخ خرید</label>
+                        <jalali-date-picker [mode]='calendarMode' id="date" name='date'
+                            [(selectedDate)]='byObject.date'>
+                        </jalali-date-picker>
                     </div>
                     <hr>
                     <button type="button" #closeByModal class="btn btn-secondary ml-1"
@@ -164,7 +172,7 @@
                     <tbody>
                         <tr *ngFor="let good of currentGood.byList;let i=index" class=" pb-0">
                             <th scope="row">{{i+1}}</th>
-                            <td>{{good.date|persianDate}}</td>
+                            <td>{{good.date.persianDate}}</td>
                             <td>{{good.ammount}} {{currentGood.unit|unitName}}</td>
                             <td>{{good.price|number}} تومان</td>
                         </tr>

@@ -1,9 +1,10 @@
-import { Component, EventEmitter, Injectable, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
-import { ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, Validator } from '@angular/forms';
+import { Component, EventEmitter, Injectable, Input, Output, OnInit } from '@angular/core';
+
 import { NgbCalendar, NgbCalendarPersian, NgbDatepickerI18n, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
 import { ToMiladi } from '../../util/date';
-import { dateModel } from './jalali-date-picker.model';
+type DateModel = shared.userControl.persianDatePicker.dateModel;
+type CalendarType = shared.userControl.persianDatePicker.CalendarType;
 
 const WEEKDAYS_SHORT = ['د', 'س', 'چ', 'پ', 'ج', 'ش', 'ی'];
 const MONTHS = ['فروردین', 'اردیبهشت', 'خرداد', 'تیر', 'مرداد', 'شهریور', 'مهر', 'آبان', 'آذر', 'دی', 'بهمن', 'اسفند'];
@@ -21,67 +22,41 @@ export class NgbDatepickerI18nPersian extends NgbDatepickerI18n {
   templateUrl: './jalali-date-picker.component.html',
   providers: [
     { provide: NgbCalendar, useClass: NgbCalendarPersian },
-    { provide: NgbDatepickerI18n, useClass: NgbDatepickerI18nPersian },
-    { provide: NG_VALUE_ACCESSOR, useExisting: JalaliDatePickerComponent, multi: true },
-    { provide: NG_VALIDATORS, useExisting: JalaliDatePickerComponent, multi: true }
-  ],
-  encapsulation: ViewEncapsulation.None
+    { provide: NgbDatepickerI18n, useClass: NgbDatepickerI18nPersian }
+  ]
 })
-export class JalaliDatePickerComponent implements OnInit, ControlValueAccessor, Validator {
+export class JalaliDatePickerComponent implements OnInit {
 
-  private onChange: (value: dateModel) => void;
-  @Input() selectedDate: dateModel;
-  @Output() selectedDateChange = new EventEmitter<dateModel>();
+  @Input() selectedDate: DateModel;
+  @Input('title') title = "title";
+  @Input() mode: CalendarType = 'close';
+  @Output() selectedDateChange = new EventEmitter<DateModel>();
+  dayModel: NgbDateStruct;
 
-  touched: boolean;
-  required: boolean;
-  mode = 'OPEN';
-  ngOnInit() {
+  constructor(
+    private calendar: NgbCalendar) {
+    console.log('Selected Date', this.selectedDate)
+  }
+  ngOnInit(): void {
     this.selectToday();
   }
-  writeValue(value: dateModel): void {
-    //this.selectedDate = value;
-    //console.log('selectedDate', value);
-    //  let x = ToJalaliObject(this.selectedDate.garegorianDate);
-    //  this.model = { year: x.year, month: x.month, day: x.day };
-    //this.model = value;
-  }
-  registerOnChange(onChange: (value: dateModel) => void): void {
-    this.onChange = onChange;
-  }
-  registerOnTouched(): void {
-  }
 
-  touch() {
-    this.touched = true;
-  }
-  validate() {
-    return null;
-  }
-  model: NgbDateStruct;
-
-  date: { year: number, month: number };
-
-  constructor(private calendar: NgbCalendar) {
-    //console.log('Selected Date', this.selectedDate)
-  }
-  @Input('title') title = "title";
   selectToday() {
-    this.model = this.calendar.getToday();
+    this.dayModel = this.calendar.getToday();
     this.onDateChange();
   }
   onDateChange() {
-    let date: dateModel = { persianDate: this.getFaDate(), garegorianDate: this.getEnDate() };
+    let date: DateModel = { persianDate: this.getFaDate(), garegorianDate: this.getEnDate() };
     this.selectedDate = date;
     this.selectedDateChange.emit(this.selectedDate);
   }
 
   private getEnDate() {
-    return ToMiladi(this.model.year, this.model.month, this.model.day)
+    return ToMiladi(this.dayModel.year, this.dayModel.month, this.dayModel.day)
   }
 
   private getFaDate() {
-    return `${this.model.year}/${this.model.month}/${this.model.day} 00:00`;
+    return `${this.dayModel.year}/${this.dayModel.month}/${this.dayModel.day}`;
   }
 }
 

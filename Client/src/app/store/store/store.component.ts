@@ -1,9 +1,10 @@
 import { StoreService } from '../store.service';
-import { Good } from '../../models/store';
+import { Good, ByItem } from '../../models/store';
 import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { UnitDic, FormMode } from 'app/models/types';
-
+type DateModel = shared.userControl.persianDatePicker.dateModel;
+type CalendarType = shared.userControl.persianDatePicker.CalendarType;
 @Component({
   selector: 'store',
   templateUrl: './store.component.html',
@@ -16,8 +17,10 @@ export class StoreComponent implements OnDestroy {
   currentGood: Good = new Good();
   unitList = UnitDic;
   units: string[] = [];
-  byObject = { price: 1000, ammount: 0 }
+  byObject: ByItem = new ByItem();
   formMode: FormMode = 'none'
+  calendarMode: CalendarType = 'close'
+  testDate = {}
   sub$: Subscription;
 
   constructor(private storeService: StoreService) {
@@ -63,6 +66,7 @@ export class StoreComponent implements OnDestroy {
   }
 
   By(data) {
+    data.date = this.byObject.date;
     data.id = this.currentGood._id;
     this.sub$ = this.storeService.By(data)
       .subscribe(m => {

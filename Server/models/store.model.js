@@ -11,7 +11,7 @@ const storeSchema = mongoose.Schema({
     byList: {
         type: [
             mongoose.Schema({
-                date: { type: Date, default: Date.now() },
+                date: { type: {} },
                 ammount: { type: Number },
                 price: { type: Number }
             })
