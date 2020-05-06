@@ -1,5 +1,4 @@
-import { DiscountType } from './types';
-
+type DiscountType = shared.util.customTypes.DiscountType;
 export class OrderItem {
     constructor(code: string = '', name: string = '', price: number = 0) {
         this.discountType = 'percent';

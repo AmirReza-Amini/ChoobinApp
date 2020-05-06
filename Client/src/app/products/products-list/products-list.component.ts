@@ -4,8 +4,7 @@ import { Subscription } from 'rxjs';
 import { ProductService } from './../product.service';
 import { Component, OnDestroy, ViewChild, ElementRef } from '@angular/core';
 import { Product } from 'app/models/product';
-import { FormMode } from 'app/models/types';
-
+type FormMode = shared.util.customTypes.FormMode;
 @Component({
   selector: 'products-list',
   templateUrl: './products-list.component.html',

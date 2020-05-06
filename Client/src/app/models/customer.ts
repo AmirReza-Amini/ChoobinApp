@@ -1,4 +1,4 @@
-import { Gender } from './types';
+type Gender = shared.util.customTypes.Gender;
 
 export class Customer {
     fullName: string;

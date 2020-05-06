@@ -3,6 +3,5 @@ declare namespace shared.userControl.persianDatePicker {
         persianDate: string,
         garegorianDate: string
     }
-
     export type CalendarType = 'close' | 'open';
 } 

@@ -1,4 +1,3 @@
-import { Category } from 'app/models/Category';
 import { Product } from 'app/models/product';
 import { OrderService } from './../order.service';
 import { ProductService } from './../../products/product.service';
@@ -6,7 +5,6 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Order } from '../../models/order';
 import { OrderItem } from 'app/models/order-item';
 import { Distinct } from '../../shared/util/utilites'
-
 
 @Component({
   selector: 'new-order',

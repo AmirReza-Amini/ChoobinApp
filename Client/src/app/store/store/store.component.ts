@@ -1,8 +1,10 @@
 import { StoreService } from '../store.service';
 import { Good, ByItem } from '../../models/store';
-import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
+import { Component, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { UnitDic, FormMode } from 'app/models/types';
+import { UnitDic } from 'app/models/types';
+type FormMode = shared.util.customTypes.FormMode;
+
 type DateModel = shared.userControl.persianDatePicker.dateModel;
 type CalendarType = shared.userControl.persianDatePicker.CalendarType;
 @Component({

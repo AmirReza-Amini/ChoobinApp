@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { OrderStatus } from 'app/models/types';
+type OrderStatus = shared.util.customTypes.OrderStatus;
 
 @Pipe({
   name: 'orderStatus'

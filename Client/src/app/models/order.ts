@@ -1,6 +1,6 @@
 import { Customer } from './customer';
-import { OrderStatus } from './types';
 import { OrderItem } from './order-item';
+type OrderStatus = shared.util.customTypes.OrderStatus;
 
 export class Order {
     constructor() {
