@@ -66,15 +66,15 @@
     </div>
     <hr>
     <h3>اقلام سفارش</h3>
-    <div class="form-row" *ngFor="let item of currentOrder.items;let i = index">
+    <div class="form-row align-items-end" *ngFor="let item of currentOrder.items;let i = index">
         <div class="form-group col-1">
             <label for="code">کد کالا</label>
             <input (keyup)="SearchByCode($event,code.value,i)" #code [name]="'code'+i" type="text" class="form-control"
                 [(ngModel)]="item.code" id="code">
         </div>
-        <div class="form-group col">
+        <div class="form-group col-2">
             <label for="name">نام کالا</label>
-            <input [name]="'name'+i" type="button" class="form-control btn btn-primary" [(ngModel)]="item.name"
+            <input [name]="'name'+i" type="button" class="form-control"  [(ngModel)]="item.name"
                 id="name" data-toggle="modal" data-target="#selectProductModal" (click)="index=i">
         </div>
         <div class="form-group col-1">
@@ -90,7 +90,7 @@
             <label for="_discount">تخفیف</label>
             <input [name]="'_discount'+i" type="text" class="form-control" [(ngModel)]="item._discount" id="_discount">
         </div>
-        <div class="form-group  col-2">
+        <div class="form-group col-2">
             <label for="_discountType">نوع تخفیف</label>
             <select [name]="'_discountType'+i" class="form-control" [(ngModel)]="item._discountType" id="_discountType">
                 <option value="percent">درصد</option>
@@ -112,7 +112,9 @@
             <input disabled [name]="'netPrice'+i" type="text" class="form-control" [ngModel]="item.netPrice|number"
                 id="netPrice">
         </div>
-        <button (click)="RemoveItem(i)" class="btn btn-danger fa fa-trash mb-3 mt-3"></button>
+        <div class="form-group col-1">
+            <button (click)="RemoveItem(i)" class="btn btn-danger fa fa-trash mb-0 py-2"></button>
+        </div>
     </div>
     <button (click)="AddItem($event)" class="btn btn-success fa fa-plus btn-block"></button>
     <hr>
@@ -133,7 +135,7 @@
             </div>
             <div class="modal-body">
                 <table class="table table-hover table-dark table-sm" dir="rtl">
-                    <thead>
+                    <thead class="border">
                         <tr class="form-group">
                             <th scope="col">#</th>
                             <th scope="col">

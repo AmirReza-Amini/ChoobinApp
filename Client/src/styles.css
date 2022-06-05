@@ -32,6 +32,11 @@
   font-variant: normal;
 }
 
+html,
+body {
+  overflow-x: hidden;
+}
+
 body,
 span {
   font-size: .875rem;
@@ -45,6 +50,7 @@ label {
   direction: rtl;
   text-align: right;
   font-family: 'sans';
+  letter-spacing: normal !important;
 }
 
 h3 {
@@ -95,7 +101,8 @@ h3 {
 }
 
 .modal-backdrop {
-  position: relative;
+  /* position: relative !important; */
+  display: none;
 }
 
 #snackbar {

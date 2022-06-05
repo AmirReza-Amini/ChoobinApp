@@ -23,15 +23,15 @@ export const ROUTES: RouteInfo[] = [
             { path: '/order/list', title: 'لیست سفارشات', icon: 'ft-list', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] }
         ]
     },
-    {
-        path: '', title: 'حسابداری', icon: 'ft-align-left', class: 'has-sub', badge: '', badgeClass: 'badge badge-pill badge-danger float-right mr-1 mt-1', isExternalLink: false,
-        submenu: [
-            {
-                path: '', title: 'صورتحساب ها', icon: '', class: 'has-sub', badge: '', badgeClass: '', isExternalLink: false, submenu: [
-                    { path: '/invoices/incoming', title: 'وارده', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
-                    { path: '/invoices/issued', title: 'صادره', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] }
-                ]
-            }
-        ]
-    }
+    // {
+    //     path: '', title: 'حسابداری', icon: 'ft-align-left', class: 'has-sub', badge: '', badgeClass: 'badge badge-pill badge-danger float-right mr-1 mt-1', isExternalLink: false,
+    //     submenu: [
+    //         {
+    //             path: '', title: 'صورتحساب ها', icon: '', class: 'has-sub', badge: '', badgeClass: '', isExternalLink: false, submenu: [
+    //                 { path: '/invoices/incoming', title: 'وارده', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+    //                 { path: '/invoices/issued', title: 'صادره', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] }
+    //             ]
+    //         }
+    //     ]
+    // }
 ];
